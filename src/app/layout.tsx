@@ -16,9 +16,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`dark ${geistSans.variable} ${geistMono.variable} ${sora.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${sora.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#07100c] text-neutral-200">{children}</body>
+      <body className="min-h-full flex flex-col bg-white text-neutral-900">{children}</body>
     </html>
   );
 }

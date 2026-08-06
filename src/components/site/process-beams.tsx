@@ -12,13 +12,13 @@ const Node = forwardRef<
     <div
       ref={ref}
       className={cn(
-        "z-10 flex size-16 items-center justify-center rounded-2xl border border-emerald-500/30 bg-[#0c1a14] text-2xl shadow-[0_0_30px_-8px_rgba(16,185,129,0.5)]",
+        "z-10 flex size-16 items-center justify-center rounded-2xl border border-emerald-200 bg-white text-2xl shadow-sm",
         className,
       )}
     >
       {emoji}
     </div>
-    <span className="text-xs font-medium text-neutral-400">{label}</span>
+    <span className="text-xs font-medium text-neutral-500">{label}</span>
   </div>
 ));
 Node.displayName = "Node";
@@ -38,18 +38,18 @@ export function ProcessBeams({
   return (
     <div
       ref={container}
-      className="relative mx-auto flex w-full max-w-3xl items-center justify-between px-2 py-10"
+      className="relative mx-auto flex w-full max-w-3xl items-center justify-between px-2 py-12"
     >
       <Node ref={ad} emoji="🎯" label={labels.ad} />
       <Node ref={quiz} emoji="🧬" label={labels.quiz} />
-      <Node ref={hub} emoji="⚡" label={labels.hub} className="size-20 text-3xl" />
+      <Node ref={hub} emoji="⚡" label={labels.hub} className="size-20 text-3xl border-emerald-300" />
       <Node ref={wa} emoji="💬" label={labels.wa} />
       <Node ref={crm} emoji="🗂️" label={labels.crm} />
 
-      <AnimatedBeam containerRef={container} fromRef={ad} toRef={quiz} gradientStartColor="#34d399" gradientStopColor="#10b981" duration={4} />
-      <AnimatedBeam containerRef={container} fromRef={quiz} toRef={hub} gradientStartColor="#34d399" gradientStopColor="#10b981" duration={4} delay={0.4} />
-      <AnimatedBeam containerRef={container} fromRef={hub} toRef={wa} gradientStartColor="#10b981" gradientStopColor="#34d399" duration={4} delay={0.8} />
-      <AnimatedBeam containerRef={container} fromRef={hub} toRef={crm} gradientStartColor="#10b981" gradientStopColor="#34d399" duration={4} delay={1.1} curvature={40} />
+      <AnimatedBeam containerRef={container} fromRef={ad} toRef={quiz} gradientStartColor="#34d399" gradientStopColor="#059669" pathColor="#e5e7eb" duration={4} />
+      <AnimatedBeam containerRef={container} fromRef={quiz} toRef={hub} gradientStartColor="#34d399" gradientStopColor="#059669" pathColor="#e5e7eb" duration={4} delay={0.4} />
+      <AnimatedBeam containerRef={container} fromRef={hub} toRef={wa} gradientStartColor="#059669" gradientStopColor="#34d399" pathColor="#e5e7eb" duration={4} delay={0.8} />
+      <AnimatedBeam containerRef={container} fromRef={hub} toRef={crm} gradientStartColor="#059669" gradientStopColor="#34d399" pathColor="#e5e7eb" duration={4} delay={1.1} curvature={40} />
     </div>
   );
 }

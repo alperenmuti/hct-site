@@ -4,51 +4,61 @@ import {
   Scissors,
   Stethoscope,
   Plane,
-  ShieldCheck,
   Languages,
   HeartPulse,
   Star,
+  ShieldCheck,
   ArrowRight,
 } from "lucide-react";
 
-import { Particles } from "@/components/ui/particles";
-import { RetroGrid } from "@/components/ui/retro-grid";
 import { AuroraText } from "@/components/ui/aurora-text";
-import { TextAnimate } from "@/components/ui/text-animate";
-import { ShimmerButton } from "@/components/ui/shimmer-button";
-import { BorderBeam } from "@/components/ui/border-beam";
-import { ShineBorder } from "@/components/ui/shine-border";
-import { Marquee } from "@/components/ui/marquee";
 import { NumberTicker } from "@/components/ui/number-ticker";
+import { Marquee } from "@/components/ui/marquee";
 import { BentoGrid, BentoCard } from "@/components/ui/bento-grid";
-import { Globe } from "@/components/ui/globe";
-import { Meteors } from "@/components/ui/meteors";
+import { BorderBeam } from "@/components/ui/border-beam";
 import { BlurFade } from "@/components/ui/blur-fade";
-import { OrbitingCircles } from "@/components/ui/orbiting-circles";
-import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
+import { Globe } from "@/components/ui/globe";
 import { ProcessBeams } from "@/components/site/process-beams";
 
-const EMERALD = "#10b981";
+function Btn({
+  href,
+  children,
+  variant = "primary",
+}: {
+  href: string;
+  children: React.ReactNode;
+  variant?: "primary" | "ghost";
+}) {
+  const base =
+    "inline-flex items-center gap-2 rounded-xl px-6 py-3 text-base font-semibold transition";
+  const styles =
+    variant === "primary"
+      ? "bg-emerald-600 text-white shadow-sm hover:bg-emerald-700"
+      : "border border-neutral-300 text-neutral-800 hover:bg-neutral-50";
+  return (
+    <a href={href} className={`${base} ${styles}`}>
+      {children}
+    </a>
+  );
+}
 
 /* ---------------- Nav ---------------- */
 function Nav() {
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-[#07100c]/70 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3">
-        <a href="#top" className="flex items-center gap-2 font-display text-lg font-extrabold tracking-tight text-white">
-          <span className="grid size-7 place-items-center rounded-lg bg-emerald-500 text-[#04120c]">H</span>
-          Hair Center<span className="text-emerald-400">·</span>Turkey
+    <header className="sticky top-0 z-50 border-b border-neutral-200/80 bg-white/80 backdrop-blur-xl">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5">
+        <a href="#top" className="flex items-center gap-2 font-display text-lg font-extrabold tracking-tight text-neutral-900">
+          <span className="grid size-7 place-items-center rounded-lg bg-emerald-600 text-white">H</span>
+          Hair Center<span className="text-emerald-600">·</span>Turkey
         </a>
-        <nav className="hidden items-center gap-7 text-sm text-neutral-300 md:flex">
-          <a href="#why" className="transition hover:text-white">Why us</a>
-          <a href="#results" className="transition hover:text-white">Results</a>
-          <a href="#reach" className="transition hover:text-white">Global</a>
-          <a href="#process" className="transition hover:text-white">Process</a>
+        <nav className="hidden items-center gap-7 text-sm text-neutral-600 md:flex">
+          <a href="#why" className="transition hover:text-neutral-900">Why us</a>
+          <a href="#results" className="transition hover:text-neutral-900">Results</a>
+          <a href="#reach" className="transition hover:text-neutral-900">Global</a>
+          <a href="#process" className="transition hover:text-neutral-900">Process</a>
         </nav>
-        <a href="#cta">
-          <ShimmerButton className="h-9 px-4 text-sm" background="rgba(6,20,14,1)" shimmerColor="#34d399">
-            Free hair analysis
-          </ShimmerButton>
+        <a href="#cta" className="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-700">
+          Free hair analysis
         </a>
       </div>
     </header>
@@ -58,54 +68,37 @@ function Nav() {
 /* ---------------- Hero ---------------- */
 function Hero() {
   return (
-    <section id="top" className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-5 pt-24 text-center">
-      <RetroGrid className="opacity-40" angle={68} lightLineColor="#10b981" darkLineColor="#10b981" />
-      <Particles className="absolute inset-0" quantity={90} color={EMERALD} ease={70} />
-      <Meteors number={14} />
-
-      <BlurFade delay={0.1} inView>
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-4 py-1.5 text-sm">
-          <span className="size-1.5 rounded-full bg-emerald-400" />
-          <AnimatedGradientText className="text-sm font-medium">
-            Since 2014 · 8,000+ transplants · 50+ countries
-          </AnimatedGradientText>
+    <section id="top" className="relative overflow-hidden px-5 pt-20 pb-16 text-center">
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-80 bg-gradient-to-b from-emerald-50/70 to-transparent" />
+      <BlurFade delay={0.05} inView>
+        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-sm text-emerald-800">
+          <span className="size-1.5 rounded-full bg-emerald-500" />
+          Since 2014 · 8,000+ transplants · 50+ countries
         </div>
       </BlurFade>
 
-      <h1 className="font-display text-5xl font-extrabold leading-[1.02] tracking-tight text-white text-balance sm:text-7xl">
-        Your hair, <AuroraText colors={["#34d399", "#10b981", "#5eead4", "#059669"]}>restored</AuroraText>.
-        <br />
-        Your confidence, back.
-      </h1>
+      <BlurFade delay={0.12} inView>
+        <h1 className="mx-auto max-w-4xl font-display text-5xl font-extrabold leading-[1.05] tracking-tight text-neutral-900 text-balance sm:text-7xl">
+          Your hair, <AuroraText colors={["#059669", "#10b981", "#0ea5e9", "#34d399"]}>restored</AuroraText>.
+          <br className="hidden sm:block" /> Your confidence, back.
+        </h1>
+      </BlurFade>
 
-      <TextAnimate
-        as="p"
-        by="word"
-        animation="blurInUp"
-        className="mx-auto mt-6 max-w-xl text-lg text-neutral-300"
-      >
-        Surgeon-led FUE & DHI in Istanbul — all-inclusive, with lifetime aftercare and a natural, undetectable result.
-      </TextAnimate>
+      <BlurFade delay={0.24} inView>
+        <p className="mx-auto mt-6 max-w-xl text-lg text-neutral-600">
+          Surgeon-led FUE &amp; DHI in Istanbul — all-inclusive, with lifetime aftercare and a natural, undetectable result.
+        </p>
+      </BlurFade>
 
-      <BlurFade delay={0.4} inView>
+      <BlurFade delay={0.34} inView>
         <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
-          <a href="#cta">
-            <ShimmerButton className="px-6 py-3 text-base font-semibold" shimmerColor="#6ee7b7" background="rgba(6,20,14,1)">
-              Get my free analysis <ArrowRight className="ms-2 size-4" />
-            </ShimmerButton>
-          </a>
-          <a
-            href="#results"
-            className="rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-base font-medium text-white transition hover:bg-white/10"
-          >
-            See real results
-          </a>
+          <Btn href="#cta">Get my free analysis <ArrowRight className="size-4" /></Btn>
+          <Btn href="#results" variant="ghost">See real results</Btn>
         </div>
       </BlurFade>
 
-      {/* floating preview card */}
-      <BlurFade delay={0.6} inView>
-        <div className="relative mt-14 w-full max-w-3xl animate-floaty overflow-hidden rounded-2xl border border-white/10 bg-[#0b1712]/80 p-6 text-left backdrop-blur">
+      <BlurFade delay={0.46} inView>
+        <div className="relative mx-auto mt-14 w-full max-w-3xl overflow-hidden rounded-2xl border border-neutral-200 bg-white p-6 text-left shadow-[0_20px_60px_-30px_rgba(16,185,129,0.35)]">
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
             {[
               ["Graft estimate", "3,200"],
@@ -113,16 +106,16 @@ function Hero() {
               ["Duration", "6–8 h"],
               ["Aftercare", "Lifetime"],
             ].map(([k, v]) => (
-              <div key={k} className="rounded-xl bg-white/5 p-3">
-                <div className="font-mono text-[10px] uppercase tracking-wider text-emerald-400/80">{k}</div>
-                <div className="mt-1 text-lg font-bold text-white">{v}</div>
+              <div key={k} className="rounded-xl bg-neutral-50 p-3">
+                <div className="font-mono text-[10px] uppercase tracking-wider text-emerald-700">{k}</div>
+                <div className="mt-1 text-lg font-bold text-neutral-900">{v}</div>
               </div>
             ))}
           </div>
-          <p className="mt-4 font-mono text-xs text-neutral-400">
+          <p className="mt-4 font-mono text-xs text-neutral-500">
             → Personalised plan, sent to your WhatsApp in minutes.
           </p>
-          <BorderBeam size={220} duration={9} colorFrom="#34d399" colorTo="#059669" />
+          <BorderBeam size={200} duration={10} colorFrom="#a7f3d0" colorTo="#059669" />
         </div>
       </BlurFade>
     </section>
@@ -133,16 +126,16 @@ function Hero() {
 const TRUST = ["Licensed clinic", "Partner hospitals", "JCI-standard OR", "Health Tourism Authorised", "12-year track record", "Surgeon-led", "50+ countries", "Lifetime aftercare"];
 function TrustBar() {
   return (
-    <div className="relative border-y border-white/5 bg-[#081109] py-5">
-      <Marquee pauseOnHover className="[--duration:30s]">
+    <div className="relative border-y border-neutral-200 bg-neutral-50 py-5">
+      <Marquee pauseOnHover className="[--duration:32s]">
         {TRUST.map((t) => (
-          <span key={t} className="mx-6 flex items-center gap-2 text-sm font-medium text-neutral-400">
-            <ShieldCheck className="size-4 text-emerald-400" /> {t}
+          <span key={t} className="mx-6 flex items-center gap-2 text-sm font-medium text-neutral-500">
+            <ShieldCheck className="size-4 text-emerald-600" /> {t}
           </span>
         ))}
       </Marquee>
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#081109] to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[#081109] to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-neutral-50 to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-neutral-50 to-transparent" />
     </div>
   );
 }
@@ -157,20 +150,20 @@ function Stats() {
   ];
   return (
     <section className="mx-auto max-w-6xl px-5 py-20">
-      <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
+      <div className="grid grid-cols-2 gap-5 md:grid-cols-4">
         {items.map(([n, suf, label], i) => (
-          <BlurFade key={label} delay={0.1 * i} inView>
-            <div className="rounded-2xl border border-white/8 bg-white/[0.02] p-6 text-center">
-              <div className="font-display text-4xl font-extrabold text-white sm:text-5xl">
-                <NumberTicker value={n} className="text-white" />
-                <span className="text-emerald-400">{suf}</span>
+          <BlurFade key={label} delay={0.08 * i} inView>
+            <div className="rounded-2xl border border-neutral-200 bg-white p-6 text-center">
+              <div className="font-display text-4xl font-extrabold text-neutral-900 sm:text-5xl">
+                <NumberTicker value={n} className="text-neutral-900" />
+                <span className="text-emerald-600">{suf}</span>
               </div>
-              <div className="mt-2 text-sm text-neutral-400">{label}</div>
+              <div className="mt-2 text-sm text-neutral-500">{label}</div>
             </div>
           </BlurFade>
         ))}
       </div>
-      <p className="mt-4 text-center font-mono text-[11px] text-neutral-600">*Illustrative figures for this concept design.</p>
+      <p className="mt-4 text-center font-mono text-[11px] text-neutral-400">*Illustrative figures for this concept design.</p>
     </section>
   );
 }
@@ -180,13 +173,13 @@ function Features() {
   return (
     <section id="why" className="mx-auto max-w-6xl px-5 py-16">
       <BlurFade inView>
-        <h2 className="font-display text-4xl font-extrabold tracking-tight text-white text-balance">
-          Everything handled. <span className="text-emerald-400">You just arrive.</span>
+        <h2 className="font-display text-4xl font-extrabold tracking-tight text-neutral-900 text-balance">
+          Everything handled. <span className="text-emerald-600">You just arrive.</span>
         </h2>
-        <p className="mt-3 max-w-xl text-neutral-400">From your first message to a full year of aftercare — one team, one price, zero guesswork.</p>
+        <p className="mt-3 max-w-xl text-neutral-500">From your first message to a full year of aftercare — one team, one price, zero guesswork.</p>
       </BlurFade>
 
-      <BentoGrid className="mt-10 grid-cols-1 auto-rows-[16rem] md:grid-cols-3">
+      <BentoGrid className="mt-10 grid-cols-1 auto-rows-[15rem] md:grid-cols-3">
         <BentoCard
           name="Surgeon-led, always"
           className="md:col-span-2"
@@ -194,18 +187,7 @@ function Features() {
           description="Every operation planned and led by a specialist — not a rotating technician line."
           href="#cta"
           cta="Meet the approach"
-          background={
-            <div className="absolute inset-0">
-              <div className="absolute -right-6 top-6 flex size-[16rem] items-center justify-center opacity-90">
-                <OrbitingCircles radius={80} iconSize={34} duration={18}>
-                  <Badge>FUE</Badge><Badge>DHI</Badge><Badge>PRP</Badge><Badge>Sapphire</Badge>
-                </OrbitingCircles>
-                <OrbitingCircles radius={45} iconSize={28} reverse duration={14}>
-                  <Badge>✚</Badge><Badge>★</Badge><Badge>✓</Badge>
-                </OrbitingCircles>
-              </div>
-            </div>
-          }
+          background={<div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(16,185,129,0.14),transparent_55%)]" />}
         />
         <BentoCard
           name="FUE & DHI"
@@ -214,13 +196,7 @@ function Features() {
           description="The right technique for your pattern — not a one-size-fits-all package."
           href="#cta"
           cta="Which suits me?"
-          background={
-            <Marquee pauseOnHover vertical className="absolute inset-0 [--duration:16s] opacity-40 [mask-image:linear-gradient(to_bottom,transparent,#000_20%,#000_80%,transparent)]">
-              {["Hairline", "Crown", "Density", "Beard", "Eyebrow", "Repair"].map((t) => (
-                <div key={t} className="mx-2 my-1 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-neutral-300">{t}</div>
-              ))}
-            </Marquee>
-          }
+          background={<div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_10%,rgba(16,185,129,0.12),transparent_55%)]" />}
         />
         <BentoCard
           name="All-inclusive"
@@ -229,7 +205,7 @@ function Features() {
           description="5-star hotel, VIP transfers, interpreter — booked for you."
           href="#cta"
           cta="What's included"
-          background={<div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(16,185,129,0.18),transparent_60%)]" />}
+          background={<div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(14,165,233,0.10),transparent_55%)]" />}
         />
         <BentoCard
           name="Your language"
@@ -238,7 +214,7 @@ function Features() {
           description="Dedicated interpreter across 20+ languages, start to finish."
           href="#cta"
           cta="Talk to us"
-          background={<div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(52,211,153,0.16),transparent_60%)]" />}
+          background={<div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(16,185,129,0.12),transparent_55%)]" />}
         />
         <BentoCard
           name="Lifetime aftercare"
@@ -247,18 +223,10 @@ function Features() {
           description="A full year of remote follow-up — and we don't disappear after."
           href="#cta"
           cta="How it works"
-          background={<div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_80%,rgba(5,150,105,0.2),transparent_60%)]" />}
+          background={<div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_80%,rgba(16,185,129,0.14),transparent_55%)]" />}
         />
       </BentoGrid>
     </section>
-  );
-}
-
-function Badge({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="grid size-9 place-items-center rounded-full border border-emerald-400/30 bg-[#0c1a14] text-xs font-semibold text-emerald-300">
-      {children}
-    </span>
   );
 }
 
@@ -268,22 +236,21 @@ function Results() {
     <section id="results" className="mx-auto max-w-6xl px-5 py-16">
       <BlurFade inView>
         <div className="flex items-end justify-between gap-4">
-          <h2 className="font-display text-4xl font-extrabold tracking-tight text-white text-balance">Real results, front and centre</h2>
-          <span className="hidden font-mono text-xs text-neutral-500 sm:block">Sample layout — clinic’s own consented photos go here</span>
+          <h2 className="font-display text-4xl font-extrabold tracking-tight text-neutral-900 text-balance">Real results, front and centre</h2>
+          <span className="hidden font-mono text-xs text-neutral-400 sm:block">Sample layout — clinic&rsquo;s own consented photos go here</span>
         </div>
       </BlurFade>
       <div className="mt-8 grid gap-5 md:grid-cols-3">
         {[["1,500 grafts", "Hairline"], ["3,200 grafts", "Hairline + crown"], ["4,600 grafts", "Advanced"]].map(([g, area], i) => (
-          <BlurFade key={g} delay={0.12 * i} inView>
-            <div className="relative overflow-hidden rounded-2xl border border-white/8 bg-[#0b1712] p-3">
-              <ShineBorder shineColor={["#34d399", "#10b981", "#5eead4"]} borderWidth={1.5} duration={12} />
+          <BlurFade key={g} delay={0.1 * i} inView>
+            <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-white p-3">
               <div className="grid grid-cols-2 gap-3">
                 <Placeholder label="Before" />
                 <Placeholder label="After · 12 mo" tone />
               </div>
               <div className="flex items-center justify-between px-1 pt-3">
-                <span className="text-sm font-semibold text-white">{g}</span>
-                <span className="text-xs text-neutral-400">{area}</span>
+                <span className="text-sm font-semibold text-neutral-900">{g}</span>
+                <span className="text-xs text-neutral-500">{area}</span>
               </div>
             </div>
           </BlurFade>
@@ -295,9 +262,8 @@ function Results() {
 
 function Placeholder({ label, tone }: { label: string; tone?: boolean }) {
   return (
-    <div className={`relative flex aspect-[3/4] items-end overflow-hidden rounded-xl ${tone ? "bg-gradient-to-b from-emerald-900/40 to-emerald-500/10" : "bg-gradient-to-b from-neutral-800/60 to-neutral-900/40"}`}>
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(255,255,255,0.06),transparent_60%)]" />
-      <span className="m-2 rounded-md bg-black/40 px-2 py-1 font-mono text-[10px] uppercase tracking-wider text-white/80">{label}</span>
+    <div className={`relative flex aspect-[3/4] items-end overflow-hidden rounded-xl ${tone ? "bg-gradient-to-b from-emerald-100 to-emerald-50" : "bg-gradient-to-b from-neutral-100 to-neutral-50"}`}>
+      <span className="m-2 rounded-md bg-white/80 px-2 py-1 font-mono text-[10px] uppercase tracking-wider text-neutral-600 shadow-sm">{label}</span>
     </div>
   );
 }
@@ -305,26 +271,25 @@ function Placeholder({ label, tone }: { label: string; tone?: boolean }) {
 /* ---------------- Global reach (globe) ---------------- */
 function Reach() {
   return (
-    <section id="reach" className="relative mx-auto grid max-w-6xl items-center gap-8 px-5 py-20 md:grid-cols-2">
+    <section id="reach" className="mx-auto grid max-w-6xl items-center gap-8 px-5 py-20 md:grid-cols-2">
       <BlurFade inView>
         <div>
-          <div className="mb-3 inline-flex rounded-full border border-emerald-500/20 bg-emerald-500/5 px-3 py-1 font-mono text-xs text-emerald-300">Global patients</div>
-          <h2 className="font-display text-4xl font-extrabold tracking-tight text-white text-balance">
-            Flown in from <AuroraText colors={["#34d399", "#10b981", "#5eead4"]}>50+ countries</AuroraText>
+          <div className="mb-3 inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 font-mono text-xs text-emerald-700">Global patients</div>
+          <h2 className="font-display text-4xl font-extrabold tracking-tight text-neutral-900 text-balance">
+            Flown in from <span className="text-emerald-600">50+ countries</span>
           </h2>
-          <p className="mt-4 max-w-md text-neutral-400">
+          <p className="mt-4 max-w-md text-neutral-500">
             The UK, Germany, the Gulf, the US — patients cross the world for Istanbul-grade restoration. We make the trip effortless from the first message to the flight home.
           </p>
           <div className="mt-6 flex flex-wrap gap-2">
             {["🇬🇧 UK", "🇩🇪 DE", "🇫🇷 FR", "🇸🇦 SA", "🇺🇸 US", "🇳🇱 NL", "🇮🇹 IT", "🇦🇪 AE"].map((c) => (
-              <span key={c} className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-neutral-300">{c}</span>
+              <span key={c} className="rounded-lg border border-neutral-200 bg-white px-3 py-1.5 text-sm text-neutral-700">{c}</span>
             ))}
           </div>
         </div>
       </BlurFade>
-      <div className="relative flex h-[26rem] items-center justify-center">
-        <Globe className="!max-w-[26rem]" />
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(16,185,129,0.15),transparent_60%)]" />
+      <div className="relative flex h-[24rem] items-center justify-center overflow-hidden">
+        <Globe className="!max-w-[24rem]" />
       </div>
     </section>
   );
@@ -333,16 +298,18 @@ function Reach() {
 /* ---------------- Process (animated beams) ---------------- */
 function Process() {
   return (
-    <section id="process" className="mx-auto max-w-6xl px-5 py-16">
-      <BlurFade inView>
-        <h2 className="text-center font-display text-4xl font-extrabold tracking-tight text-white text-balance">
-          From click to consultation, <span className="text-emerald-400">in minutes</span>
-        </h2>
-        <p className="mx-auto mt-3 max-w-lg text-center text-neutral-400">
-          A 30-second analysis qualifies you and reaches a real coordinator instantly — no forms lost, no waiting.
-        </p>
-      </BlurFade>
-      <ProcessBeams labels={{ ad: "You", quiz: "Free analysis", hub: "Instant routing", wa: "WhatsApp", crm: "Care team" }} />
+    <section id="process" className="border-y border-neutral-200 bg-neutral-50">
+      <div className="mx-auto max-w-6xl px-5 py-16">
+        <BlurFade inView>
+          <h2 className="text-center font-display text-4xl font-extrabold tracking-tight text-neutral-900 text-balance">
+            From click to consultation, <span className="text-emerald-600">in minutes</span>
+          </h2>
+          <p className="mx-auto mt-3 max-w-lg text-center text-neutral-500">
+            A 30-second analysis qualifies you and reaches a real coordinator instantly — no forms lost, no waiting.
+          </p>
+        </BlurFade>
+        <ProcessBeams labels={{ ad: "You", quiz: "Free analysis", hub: "Instant routing", wa: "WhatsApp", crm: "Care team" }} />
+      </div>
     </section>
   );
 }
@@ -359,17 +326,17 @@ function Testimonials() {
   return (
     <section className="py-16">
       <div className="mx-auto mb-8 max-w-6xl px-5">
-        <span className="font-mono text-xs text-neutral-500">Sample layout — replace with verified reviews</span>
-        <h2 className="font-display text-4xl font-extrabold tracking-tight text-white text-balance">Patients, in their words</h2>
+        <span className="font-mono text-xs text-neutral-400">Sample layout — replace with verified reviews</span>
+        <h2 className="font-display text-4xl font-extrabold tracking-tight text-neutral-900 text-balance">Patients, in their words</h2>
       </div>
-      <Marquee pauseOnHover className="[--duration:40s]">
+      <Marquee pauseOnHover className="[--duration:44s]">
         {REVIEWS.map(([who, quote]) => (
-          <figure key={who} className="mx-3 w-80 rounded-2xl border border-white/8 bg-[#0b1712] p-5">
-            <div className="mb-2 flex gap-0.5 text-emerald-400">
-              {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="size-4 fill-emerald-400" />)}
+          <figure key={who} className="mx-3 w-80 rounded-2xl border border-neutral-200 bg-white p-5">
+            <div className="mb-2 flex gap-0.5 text-emerald-500">
+              {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="size-4 fill-emerald-500" />)}
             </div>
-            <blockquote className="text-sm text-neutral-200">“{quote}”</blockquote>
-            <figcaption className="mt-3 font-mono text-xs text-neutral-500">{who}</figcaption>
+            <blockquote className="text-sm text-neutral-700">“{quote}”</blockquote>
+            <figcaption className="mt-3 font-mono text-xs text-neutral-400">{who}</figcaption>
           </figure>
         ))}
       </Marquee>
@@ -380,24 +347,18 @@ function Testimonials() {
 /* ---------------- CTA ---------------- */
 function CTA() {
   return (
-    <section id="cta" className="relative mx-5 my-20 overflow-hidden rounded-3xl border border-emerald-500/20 bg-[#081109] py-20">
-      <Particles className="absolute inset-0" quantity={70} color={EMERALD} ease={60} />
-      <div className="relative mx-auto max-w-2xl px-6 text-center">
-        <h2 className="font-display text-4xl font-extrabold tracking-tight text-white text-balance sm:text-5xl">
-          Find out what’s possible — <AuroraText colors={["#34d399", "#10b981", "#5eead4"]}>free</AuroraText>
+    <section id="cta" className="mx-5 my-20">
+      <div className="mx-auto max-w-5xl rounded-3xl border border-emerald-200 bg-emerald-50 px-6 py-16 text-center">
+        <h2 className="mx-auto max-w-2xl font-display text-4xl font-extrabold tracking-tight text-neutral-900 text-balance sm:text-5xl">
+          Find out what&rsquo;s possible — <span className="text-emerald-600">free</span>
         </h2>
-        <p className="mx-auto mt-4 max-w-md text-neutral-300">
+        <p className="mx-auto mt-4 max-w-md text-neutral-600">
           A 30-second hair analysis: your graft estimate, the right technique, and a realistic 12-month plan. No obligation.
         </p>
         <div className="mt-8 flex justify-center">
-          <a href="#top">
-            <ShimmerButton className="px-7 py-3.5 text-base font-semibold" shimmerColor="#6ee7b7" background="rgba(4,18,12,1)">
-              Start my free analysis <ArrowRight className="ms-2 size-4" />
-            </ShimmerButton>
-          </a>
+          <Btn href="#top">Start my free analysis <ArrowRight className="size-4" /></Btn>
         </div>
       </div>
-      <BorderBeam size={320} duration={12} colorFrom="#34d399" colorTo="#059669" />
     </section>
   );
 }
@@ -405,14 +366,14 @@ function CTA() {
 /* ---------------- Footer ---------------- */
 function Footer() {
   return (
-    <footer className="border-t border-white/5 bg-[#060d09] px-5 py-10">
+    <footer className="border-t border-neutral-200 bg-white px-5 py-10">
       <div className="mx-auto max-w-6xl">
         <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-          <span className="font-display text-lg font-extrabold text-white">Hair Center · Turkey</span>
-          <span className="font-mono text-xs text-neutral-500">Concept redesign · Istanbul</span>
+          <span className="font-display text-lg font-extrabold text-neutral-900">Hair Center · Turkey</span>
+          <span className="font-mono text-xs text-neutral-400">Concept redesign · Istanbul</span>
         </div>
-        <p className="mt-6 max-w-3xl text-xs leading-relaxed text-neutral-600">
-          Unofficial concept redesign by <span className="text-neutral-400">Alperen Muti</span> — a permissionless-apprenticeship demonstration. Not affiliated with, or endorsed by, Hair Center of Turkey. Statistics, results, and reviews shown are illustrative placeholders for design purposes only and are not medical claims or advice.
+        <p className="mt-6 max-w-3xl text-xs leading-relaxed text-neutral-400">
+          Unofficial concept redesign by <span className="text-neutral-600">Alperen Muti</span> — a permissionless-apprenticeship demonstration. Not affiliated with, or endorsed by, Hair Center of Turkey. Statistics, results, and reviews shown are illustrative placeholders for design purposes only and are not medical claims or advice.
         </p>
       </div>
     </footer>
@@ -421,7 +382,7 @@ function Footer() {
 
 export default function Page() {
   return (
-    <main className="relative">
+    <main className="relative bg-white">
       <Nav />
       <Hero />
       <TrustBar />
